@@ -1,7 +1,7 @@
 {
   "name": "threexr-app",
   "version": "0.1.0",
-  "homepage": "https://anuG3101.github.io/LearningPractice",
+  "homepage": "https://anuG3101.github.io/ThreeXR",
   "private": true,
   "dependencies": {
     "@react-three/drei": "^9.122.0",

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkthreexr_app=self.webpackChunkthreexr_app||[]).push([[4979],{4979:(e,t,s)=>{s.r(t),s.d(t,{ix_css_grid_item:()=>r});var a=s(4428);const r=class{constructor(e){(0,a.r)(this,e),this.itemName=void 0}render(){const e={};return e["grid-area"]=this.itemName,(0,a.h)(a.H,{key:"bc5b71e095a35738800e7b95baca2c4a7874205e",style:e},(0,a.h)("slot",{key:"dd2a9bc3a5eecc1d539820a72dd9de51e5466923"}))}};r.style=":host{display:block;position:relative}:host ::slotted(*){height:100%;width:100%}"}}]);
+//# sourceMappingURL=4979.a733bf35.chunk.js.map

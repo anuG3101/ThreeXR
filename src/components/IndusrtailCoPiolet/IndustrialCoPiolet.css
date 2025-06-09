@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: auto;
   padding: 20px;
   background: #23233c;
 }
@@ -24,10 +24,6 @@
   margin-bottom: 20px;
 }
 
-.assistant-bot-icon {
-  font-size: 40px;
-  margin-bottom: 10px;
-}
 
 .assistant-bot-icon img {
   width: 50px;
@@ -53,19 +49,14 @@
 }
 
 .mic-button {
-
-  width: 25px;
-  height: 25px;
+  width: 16px;
+  height: 16px;
 }
 
 .mic-button.listening {
   background-color: #ff4081;
 }
 
-.mic-button span.material-icons {
-  color: white;
-  font-size: 24px;
-}
 
 .message-log {
   border-top: 1px solid #2c3e50;

@@ -21,13 +21,13 @@ export function XRDisplay() {
   return (
      <>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', paddingTop: '24px', position: 'relative', zIndex: 20 }}>
-        <IxButton style={{fontSize: '12px', height:'23px'}} onClick={() => store.enterAR()}>Enter AR</IxButton>
+        <IxButton style={{fontSize: '16px', height:'35px'}} onClick={() => store.enterAR()}>Enter AR</IxButton>
       </div>
       <Canvas>
         <XR store={store}>
           <ambientLight intensity={1} />
           <XRDomOverlay style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ padding: '2rem', fontFamily: 'Arial', backgroundColor: 'rgba(255, 255, 255, 0.8)', borderRadius: '10px', zIndex:10 }}>
+            <div style={{ padding: '2rem', borderRadius: '10px', zIndex:10 }}>
               <IndustrialCoPiolet onNewMessage={handleNewMessage} />
             </div>
           </XRDomOverlay>

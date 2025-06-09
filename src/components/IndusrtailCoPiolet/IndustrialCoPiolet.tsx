@@ -155,7 +155,7 @@ export function IndustrialCoPiolet({ onNewMessage }: VoiceControlProps) {
             <div className="assistant-card">
                 <div className="assistant-header">
                     <div className="assistant-bot-icon"> <img src={roboSVG} alt="Robo" /></div>
-                    <h2>How can I assist you today?</h2>
+                    <h3>How can I assist you today?</h3>
                 </div>
 
                 <form className="assistant-form" onSubmit={handleSubmit}>

@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+
+.voice-form {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.voice-form input {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.mic-button {
+  background-color: #008cba;
+  border: none;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 4px;
+}
+
+.message-log {
+  margin-top: 1rem;
+}
+
+.message {
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.message.user strong {
+  color: blue;
+}
+
+.message.assistant strong {
+  color: green;
+}

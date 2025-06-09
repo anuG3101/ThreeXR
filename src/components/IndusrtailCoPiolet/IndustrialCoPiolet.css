@@ -1,45 +1,86 @@
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 
-.voice-form {
+.assistant-container {
   display: flex;
-  width: 100%;
-  justify-content: space-between;
-  margin-top: 10px;
-  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  background: #23233c;
 }
 
-.voice-form input {
+.assistant-card {
+  background: var(--theme-color-lightbox);
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 600px;
+  width: 100%;
+  color: white;
+
+}
+
+.assistant-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.assistant-bot-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.assistant-bot-icon img {
+  width: 50px;
+  height: 50px;
+}
+
+.assistant-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.assistant-form input[type="text"] {
   flex: 1;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
-  font-size: 1rem;
+  padding: 10px 15px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background-color: #23233c;
+  color: white;
 }
 
 .mic-button {
-  background-color: #008cba;
-  border: none;
+
+  width: 25px;
+  height: 25px;
+}
+
+.mic-button.listening {
+  background-color: #ff4081;
+}
+
+.mic-button span.material-icons {
   color: white;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 1.2rem;
-  border-radius: 4px;
+  font-size: 24px;
 }
 
 .message-log {
-  margin-top: 1rem;
+  border-top: 1px solid #2c3e50;
+  padding-top: 20px;
 }
 
 .message {
-  color: #333;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  line-height: 1.6;
 }
 
 .message.user strong {
-  color: blue;
+  color: #81d4fa;
 }
 
 .message.assistant strong {
-  color: green;
+  color: #ffd54f;
 }

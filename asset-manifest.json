@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ThreeXR/static/css/main.5905f209.css",
-    "main.js": "/ThreeXR/static/js/main.6bd0a90b.js",
+    "main.css": "/ThreeXR/static/css/main.338c673b.css",
+    "main.js": "/ThreeXR/static/js/main.e8a17a90.js",
     "static/js/9400.d89292ae.chunk.js": "/ThreeXR/static/js/9400.d89292ae.chunk.js",
     "static/js/7650.e1275649.chunk.js": "/ThreeXR/static/js/7650.e1275649.chunk.js",
     "static/js/395.65e16ef3.chunk.js": "/ThreeXR/static/js/395.65e16ef3.chunk.js",
@@ -137,8 +137,8 @@
     "static/media/sisan03.woff2": "/ThreeXR/static/media/sisan03.e083757dd9a557797cea.woff2",
     "index.html": "/ThreeXR/index.html",
     "static/media/robot.svg": "/ThreeXR/static/media/robot.901ebd97150d90d4a732932817134d35.svg",
-    "main.5905f209.css.map": "/ThreeXR/static/css/main.5905f209.css.map",
-    "main.6bd0a90b.js.map": "/ThreeXR/static/js/main.6bd0a90b.js.map",
+    "main.338c673b.css.map": "/ThreeXR/static/css/main.338c673b.css.map",
+    "main.e8a17a90.js.map": "/ThreeXR/static/js/main.e8a17a90.js.map",
     "9400.d89292ae.chunk.js.map": "/ThreeXR/static/js/9400.d89292ae.chunk.js.map",
     "7650.e1275649.chunk.js.map": "/ThreeXR/static/js/7650.e1275649.chunk.js.map",
     "395.65e16ef3.chunk.js.map": "/ThreeXR/static/js/395.65e16ef3.chunk.js.map",
@@ -253,7 +253,7 @@
     "2268.d14e4d39.chunk.js.map": "/ThreeXR/static/js/2268.d14e4d39.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5905f209.css",
-    "static/js/main.6bd0a90b.js"
+    "static/css/main.338c673b.css",
+    "static/js/main.e8a17a90.js"
   ]
 }

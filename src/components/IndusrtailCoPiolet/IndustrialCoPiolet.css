@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 600px;
   height: auto;
   padding: 20px;
   background: #23233c;
@@ -13,7 +12,8 @@
   border-radius: 16px;
   padding: 30px;
   max-width: 600px;
-  height: 300px;
+  min-width:35vw;
+  min-height: 350px;
   width: 100%;
   color: white;
 

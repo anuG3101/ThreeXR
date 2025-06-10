@@ -1,22 +1,26 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import "./IndustrialCoPiolet.css";
 import { IxIcon, IxIconButton } from "@siemens/ix-react";
-import roboSVG from '../../assets/images/robot.svg';
+import roboSVG from '../../assets/images/robot.svg'; // Adjust the path as necessary
 
-export type Message = { role: "user" | "assistant"; content: string; speaking: boolean };
+export type Message = { role: "user" | "assistant"; content: string };
 
 interface VoiceControlProps {
     onNewMessage?: (message: Message) => void;
 }
 
-const SpeechRecognitionClass = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+const SpeechRecognitionClass =
+    (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
 
 export function IndustrialCoPiolet({ onNewMessage }: VoiceControlProps) {
     const [listening, setListening] = useState(false);
     const [transcript, setTranscript] = useState("");
     const [typedText, setTypedText] = useState("");
-    const [messages, setMessages] = useState<Message[]>([]);
+    const [userMessage, setUserMessage] = useState<Message | null>(null);
+    const [assistantMessage, setAssistantMessage] = useState<Message | null>(null);
     const [isSpeakerOn, setIsSpeakerOn] = useState(true);
+    const [speaking, setSpeaking] = useState(false);
+    const [paused, setPaused] = useState(false);
 
     const recognition = useMemo(() => {
         if (!SpeechRecognitionClass) return null;
@@ -28,35 +32,39 @@ export function IndustrialCoPiolet({ onNewMessage }: VoiceControlProps) {
         return rec;
     }, []);
 
-    const askOpenAI = useCallback(async (question: string) => {
-        const userMsg: Message = { role: "user", content: question, speaking: false };
-        setMessages((prev) => [...prev, userMsg]);
-        onNewMessage?.(userMsg);
+    const askOpenAI = useCallback(
+        async (question: string) => {
+            const userMsg: Message = { role: "user", content: question };
+            setUserMessage(userMsg);
+            setAssistantMessage(null);
+            onNewMessage?.(userMsg);
 
-        const url = "http://127.0.0.1:5000/generate";
+            const url = "http://127.0.0.1:5000/generate";
 
-        try {
-            const res = await fetch(url, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ prompt: question }),
-            });
+            try {
+                const res = await fetch(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ prompt: question }),
+                });
 
-            const data = await res.json();
-            const answer = data?.response || "Sorry, no answer.";
-            const assistantMsg: Message = { role: "assistant", content: answer, speaking: false };
+                const data = await res.json();
+                const answer = data?.response || "Sorry, no answer.";
+                const assistantMsg: Message = { role: "assistant", content: answer };
 
-            setMessages((prev) => [...prev, assistantMsg]);
-            onNewMessage?.(assistantMsg);
-            speakMessage(assistantMsg);
-        } catch (err) {
-            console.error("OpenAI error:", err);
-            const fallback: Message = { role: "assistant", content: "Sorry, no answer.", speaking: false };
-            setMessages((prev) => [...prev, fallback]);
-            onNewMessage?.(fallback);
-            speakMessage(fallback);
-        }
-    }, [onNewMessage]);
+                setAssistantMessage(assistantMsg);
+                onNewMessage?.(assistantMsg);
+                speakMessage(answer);
+            } catch (err) {
+                console.error("OpenAI error:", err);
+                const fallback: Message = { role: "assistant", content: "Sorry, no answer." };
+                setAssistantMessage(fallback);
+                onNewMessage?.(fallback);
+                speakMessage(fallback.content);
+            }
+        },
+        [onNewMessage]
+    );
 
     useEffect(() => {
         if (transcript) {
@@ -72,74 +80,78 @@ export function IndustrialCoPiolet({ onNewMessage }: VoiceControlProps) {
         setTypedText("");
     };
 
-    const speakMessage = (message: Message) => {
+    const speakMessage = (message: string) => {
         if ("speechSynthesis" in window && isSpeakerOn) {
-            const utterance = new SpeechSynthesisUtterance(message.content);
-            utterance.onstart = () => updateMessageSpeaking(message.content, true);
-            utterance.onend = () => updateMessageSpeaking(message.content, false);
+            const utterance = new SpeechSynthesisUtterance(message);
+            utterance.onstart = () => setSpeaking(true);
+            utterance.onend = () => {
+                setSpeaking(false);
+                setPaused(false);
+            };
             window.speechSynthesis.speak(utterance);
         }
     };
 
-    const pauseSpeech = (messageContent: string) => {
-        if (window.speechSynthesis.speaking) {
+    const pauseSpeech = () => {
+        if (window.speechSynthesis.speaking && !paused) {
             window.speechSynthesis.pause();
-            updateMessageSpeaking(messageContent, false);
+            setPaused(true);
         }
     };
 
-    const resumeSpeech = (messageContent: string) => {
-        if (window.speechSynthesis.paused) {
+    const resumeSpeech = () => {
+        if (paused) {
             window.speechSynthesis.resume();
-            updateMessageSpeaking(messageContent, true);
+            setPaused(false);
         }
-    };
-
-    const updateMessageSpeaking = (messageContent: string, isSpeaking: boolean) => {
-        setMessages(prevMessages => 
-            prevMessages.map(msg => 
-                msg.content === messageContent ? { ...msg, speaking: isSpeaking } : msg
-            )
-        );
     };
 
     const toggleSpeaker = () => {
         setIsSpeakerOn(!isSpeakerOn);
         if (window.speechSynthesis.speaking) {
-            window.speechSynthesis.cancel();
+            window.speechSynthesis.cancel(); // stop if muted
         }
+    };
+
+    const clearChats = () => {
+        setUserMessage(null);
+        setAssistantMessage(null);
+        setTypedText("");
     };
 
     const toggleListening = () => {
-        if (!recognition) {
-            alert("Speech recognition not supported.");
-            return;
-        }
+    if (!recognition) {
+        alert("Speech recognition not supported.");
+        return;
+    }
 
-        if (listening) {
-            recognition.stop();
+    if (listening) {
+        recognition.stop();
+        setListening(false);
+    } else {
+        recognition.onresult = (event: any) => {
+            const transcriptResult = Array.from(event.results)
+                .map((result) => (result as SpeechRecognitionResult)[0].transcript)
+                .join("");
+            setTranscript(transcriptResult);
+        };
+
+        recognition.onend = () => {
+            // Restart recognition only if it stopped unexpectedly
+            if (listening) recognition.start();
+        };
+
+        recognition.onerror = (event: any) => {
+            console.error("Speech recognition error:", event.error);
+            alert("An error occurred during speech recognition: " + event.error);
             setListening(false);
-        } else {
-            recognition.onresult = (event: any) => {
-                const transcriptResult = Array.from(event.results)
-                    .map((result) => (result as SpeechRecognitionResult)[0].transcript)
-                    .join("");
-                setTranscript(transcriptResult);
-            };
+        };
 
-            recognition.onend = () => {
-                if (listening) recognition.start();
-            };
+        recognition.start();
+        setListening(true);
+    }
+};
 
-            recognition.onerror = (event: any) => {
-                console.error("Speech recognition error:", event.error);
-                setListening(false);
-            };
-
-            recognition.start();
-            setListening(true);
-        }
-    };
 
     return (
         <div className="assistant-container">
@@ -157,23 +169,24 @@ export function IndustrialCoPiolet({ onNewMessage }: VoiceControlProps) {
                         onChange={(e) => setTypedText(e.target.value)}
                     />
                     <IxIconButton className="mic-button" icon="microphone-filled" onClick={toggleListening} variant="primary"></IxIconButton>
+
                 </form>
 
                 <div className="message-log">
-                    {messages.map((message, index) => (
-                        <div key={index} className={`message ${message.role}`}>
-                            <strong>{message.role === "user" ? "You" : "Assistant"}:</strong> {message.content}
-                            {message.role === "assistant" && (
-                                <IxIconButton
-                                    className="speech-control-button"
-                                    icon={message.speaking ? "circle-pause" : "play"} // Replace with actual icon classes or Font Awesome icons
-                                    onClick={() => message.speaking ? pauseSpeech(message.content) : resumeSpeech(message.content)}
-                                />
-                            )}
+                    {userMessage && (
+                        <div className="message user">
+                            <strong>You:</strong> {userMessage.content}
                         </div>
-                    ))}
+                    )}
+                    {assistantMessage && (
+                        <div className="message assistant">
+                            <strong>Assistant:</strong> {assistantMessage.content}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
+
+
     );
 }

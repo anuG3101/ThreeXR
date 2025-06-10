@@ -1,9 +1,8 @@
-
-
 .assistant-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 600px;
   height: auto;
   padding: 20px;
   background: #23233c;
@@ -14,6 +13,7 @@
   border-radius: 16px;
   padding: 30px;
   max-width: 600px;
+  height: 300px;
   width: 100%;
   color: white;
 
@@ -74,4 +74,8 @@
 
 .message.assistant strong {
   color: #ffd54f;
+}
+
+.speech-control-button {
+  margin-left: 15px;
 }

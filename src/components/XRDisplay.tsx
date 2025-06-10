@@ -10,12 +10,6 @@ import { IndustrialCoPiolet, Message } from "./IndusrtailCoPiolet/IndustrialCoPi
 const store = createXRStore();
 
 export function XRDisplay() {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [arStarted, setARStarted] = useState(false);
-
-  const handleNewMessage = (msg: Message) => {
-    setMessages((prev) => [...prev, msg]);
-  };
 
 
   return (
@@ -28,7 +22,7 @@ export function XRDisplay() {
           <ambientLight intensity={1} />
           <XRDomOverlay style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div style={{ padding: '2rem', borderRadius: '10px', zIndex:10 }}>
-              <IndustrialCoPiolet onNewMessage={handleNewMessage} />
+              <IndustrialCoPiolet  />
             </div>
           </XRDomOverlay>
         </XR>

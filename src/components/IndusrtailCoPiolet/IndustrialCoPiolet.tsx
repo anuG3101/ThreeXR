@@ -200,7 +200,7 @@ export function IndustrialCoPiolet() {
                             }}
                         >
                             <div className="assistant-bot-icon">
-                                <img src={roboSVG} alt="Robo" style={{ width: 32, height: 32 }} />
+                                <img src={roboSVG} alt="Robo" style={{ width: 32, height: 32,marginBottom:'2px' }} />
                             </div>
 
                             <div style={{ flex: 1 }}>

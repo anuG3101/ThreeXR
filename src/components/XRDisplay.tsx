@@ -6,6 +6,7 @@ import { createXRStore, useXR, XR, XRDomOverlay } from "@react-three/xr";
 import { IxButton } from '@siemens/ix-react';
 import { IndustrialCoPiolet, Message } from "./IndusrtailCoPiolet/IndustrialCoPiolet";
 import { Environment } from "@react-three/drei";
+import { Color } from "three";
 
 // Create XR store
 const store = createXRStore();
@@ -27,7 +28,7 @@ export function XRDisplay() {
   return (
      <>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', paddingTop: '24px', position: 'relative', zIndex: 20 }}>
-        <IxButton style={{fontSize: '16px', height:'35px'}} onClick={() =>   store.enterXR('immersive-ar')}>Enter AR</IxButton>
+        <IxButton style={{fontSize: '16px', height:'35px'}} onClick={() =>   store.enterXR('immersive-ar')}>Enter XR</IxButton>
       </div>
       <Canvas gl={{ alpha: true }} style={{ background: 'transparent' }}>
         <XR store={store}>

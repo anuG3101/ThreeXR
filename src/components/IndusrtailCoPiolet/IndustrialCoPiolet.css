@@ -8,12 +8,10 @@
 }
 
 .assistant-card {
-  background: var(--theme-color-lightbox);
+  background: transparent;
   border-radius: 16px;
   padding: 30px;
   max-width: 600px;
-  min-width:35vw;
-  min-height: 350px;
   width: 100%;
   color: white;
 
@@ -44,7 +42,7 @@
   border: none;
   outline: none;
   font-size: 16px;
-  background-color: #23233c;
+  background-color: #dddd;
   color: white;
 }
 

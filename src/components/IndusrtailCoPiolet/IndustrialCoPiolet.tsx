@@ -156,14 +156,14 @@ export function IndustrialCoPiolet() {
     };
 
     return (
-        <div className="assistant-container">
+        // <div className="assistant-container">
             <div className="assistant-card">
-                <div className="assistant-header">
+                {/* <div className="assistant-header">
                     <div className="assistant-bot-icon">
                         <img src={roboSVG} alt="Robo" />
                     </div>
                     <h3>How can I assist you today?</h3>
-                </div>
+                </div> */}
 
                 <form className="assistant-form" onSubmit={handleSubmit}>
                     <input
@@ -180,7 +180,7 @@ export function IndustrialCoPiolet() {
                     />
                 </form>
 
-                <div className="message-log">
+                {/* <div className="message-log">
                     {userMessage && (
                         <div className="message-user">
                             <div className="user-icon">
@@ -214,8 +214,8 @@ export function IndustrialCoPiolet() {
                             />
                         </div>
                     )}
-                </div>
+                </div> */}
             </div>
-        </div>
+        // </div>
     );
 }

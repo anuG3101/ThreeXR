@@ -1,12 +1,12 @@
+import './App.css';
+import WebXrCopilot from './components/main';
 
-import { XRDisplay } from "./components/XRDisplay";
+function App() {
+  return (
+    <>
+      <WebXrCopilot />
+    </>
+  );
+}
 
-export default function App() {
-
-
-    return (
-        <>
-           <XRDisplay />
-        </>
-    )
-};
+export default App;

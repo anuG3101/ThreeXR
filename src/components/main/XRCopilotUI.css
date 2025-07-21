@@ -38,7 +38,7 @@
 }
 
 .xr-chat-bubble.bot {
-    background-color: #6d92aa;
+    background-color: rgb(93,131, 168, 0.5);
     align-self: flex-start;
     color: white;
     font-weight: 500;
@@ -68,7 +68,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    background: #857d97fc;
+    background: rgba(93,91,113, 0.5);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border: 1px solid rgba(255, 255, 255, 0.2);

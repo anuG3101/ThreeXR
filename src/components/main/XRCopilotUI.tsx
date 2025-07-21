@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./XRCopilotUI.css";
 import useVoiceAssistant from "../voiceAssistant";
+import micIcon from "../../assets/images/white-mic.svg"; 
+import onMicIcon from "../../assets/images/on-mic-icon.svg";
 
 interface ChatMessage {
     role: "user" | "bot";
@@ -135,7 +137,7 @@ const XRCopilotUI: React.FC = () => {
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
                     <img
-                        src="/white-mic.svg"
+                        src={micIcon}
                         alt="Microphone"
                         width="20"
                         height="20"

@@ -87,12 +87,12 @@ const WebXrCopilot = () => {
                     </button>
                 )}
             </div>
-            <XRCopilotUI />
+
             <Canvas ref={canvasRef}>
                 <XR store={store}>
                     <ambientLight intensity={1} />
                     <XRDomOverlay>
-
+                        <XRCopilotUI />
                     </XRDomOverlay>
                 </XR>
             </Canvas>

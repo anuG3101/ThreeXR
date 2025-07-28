@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ThreeXR/static/css/main.c31669b0.css",
-    "main.js": "/ThreeXR/static/js/main.c37f1e24.js",
+    "main.js": "/ThreeXR/static/js/main.b68b022c.js",
     "static/js/703.a233512c.chunk.js": "/ThreeXR/static/js/703.a233512c.chunk.js",
     "static/js/453.ce4d54af.chunk.js": "/ThreeXR/static/js/453.ce4d54af.chunk.js",
     "static/js/544.e600e7c1.chunk.js": "/ThreeXR/static/js/544.e600e7c1.chunk.js",
@@ -13,12 +13,12 @@
     "static/media/on-mic.svg": "/ThreeXR/static/media/on-mic.d79739f58c73b75f7e2ef4446086593d.svg",
     "static/media/white-mic.svg": "/ThreeXR/static/media/white-mic.f37444d9d2e99efeba72647cb931de3d.svg",
     "main.c31669b0.css.map": "/ThreeXR/static/css/main.c31669b0.css.map",
-    "main.c37f1e24.js.map": "/ThreeXR/static/js/main.c37f1e24.js.map",
+    "main.b68b022c.js.map": "/ThreeXR/static/js/main.b68b022c.js.map",
     "703.a233512c.chunk.js.map": "/ThreeXR/static/js/703.a233512c.chunk.js.map",
     "453.ce4d54af.chunk.js.map": "/ThreeXR/static/js/453.ce4d54af.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c31669b0.css",
-    "static/js/main.c37f1e24.js"
+    "static/js/main.b68b022c.js"
   ]
 }
